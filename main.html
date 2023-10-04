@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <script type="text/javascript">
+        function firstNonRepeatedChar(str) {
+            // Create an empty object to store character frequencies
+            const charCount = {};
 
+            // Iterate through the string and count the frequency of each character
+            for (let char of str) {
+                charCount[char] = (charCount[char] || 0) + 1;
+            }
+
+            // Iterate through the string again to find the first non-repeated character
+            for (let char of str) {
+                if (charCount[char] === 1) {
+                    return char; // Found the first non-repeated character
+                }
+            }
+
+            // If no non-repeated character is found, return null
+            return null;
+        }
+
+        const input = prompt("Enter a string");
+        const result = firstNonRepeatedChar(input);
+
+        if (result !== null) {
+            alert(result);
+        } else {
+            alert("null");
+        }
+    </script>
 </body>
 
 </html>
