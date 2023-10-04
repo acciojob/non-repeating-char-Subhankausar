@@ -1,41 +1,57 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Non-Repeated Character Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #container {
+            margin: 20px;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
-    <script type="text/javascript">
-        function firstNonRepeatedChar(str) {
-            // Create an empty object to store character frequencies
-            const charCount = {};
+    <div id="container">
+        <h1>Find the First Non-Repeated Character</h1>
+        <input type="text" id="inputString" placeholder="Enter a string">
+        <button onclick="findNonRepeatedChar()">Find</button>
+        <p id="result"></p>
+    </div>
 
-            // Iterate through the string and count the frequency of each character
-            for (let char of str) {
+    <script>
+        function firstNonRepeatedChar(str) {
+            const charCount = {};
+            for (const char of str) {
                 charCount[char] = (charCount[char] || 0) + 1;
             }
-
-            // Iterate through the string again to find the first non-repeated character
-            for (let char of str) {
+            for (const char of str) {
                 if (charCount[char] === 1) {
-                    return char; // Found the first non-repeated character
+                    return char;
                 }
             }
-
-            // If no non-repeated character is found, return null
             return null;
         }
 
-        const input = prompt("Enter a string");
-        const result = firstNonRepeatedChar(input);
-
-        if (result !== null) {
-            alert(result);
-        } else {
-            alert("null");
+        function findNonRepeatedChar() {
+            const inputElement = document.getElementById("inputString");
+            const resultElement = document.getElementById("result");
+            const inputString = inputElement.value;
+            const nonRepeatedChar = firstNonRepeatedChar(inputString);
+            
+            if (nonRepeatedChar !== null) {
+                resultElement.textContent = `The first non-repeated character is: ${nonRepeatedChar}`;
+            } else {
+                resultElement.textContent = "No non-repeated character found.";
+            }
         }
     </script>
 </body>
-
 </html>
